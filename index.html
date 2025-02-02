@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub 用户信息</title>
+    <!-- 安全防护 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+</head>
+<body>
+    <div id="info"></div>
+
+    <script>
+        // 参数解析与清理
+        const sanitize = (input) => {
+            return input ? input.replace(/<[^>]*>?/gm, '') : '';
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const name = sanitize(params.get('name')) || 'Xinqi Wang';
+        const email = sanitize(params.get('email')) || 'wangxq@stu.hfuu.edu.cn';
+
+        document.getElementById('info').innerHTML = `
+            <h2>${name}</h2>
+            <p>📧 ${email}</p>
+            <small style="color: #666;">页面托管于 GitHub Pages</small>
+        `;
+    </script>
+</body>
+</html>
